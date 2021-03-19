@@ -1,0 +1,22 @@
+Covid 19 Vaccination
+
+Entity
+
+	1) COUNTRY
+	
+		- Model for countries
+		- (id,name(String) , no of people vaccinated, total population)
+		- Annotate as a JPA(persistence) entity
+
+		
+
+Repositories
+
+	1)  Country repository
+		- extends CrudRepo from springFramework
+		
+
+
+
+BootStrap and Tests
+	1) First create database and tables

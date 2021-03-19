@@ -1,14 +1,24 @@
 package com.covidProject.covid19.entity;
+import java.util.UUID;
+
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
 public class Country {
 	
 	
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	//private Long id;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", columnDefinition = "VARCHAR(255)")
+    private UUID id;
 	
 	private String name;
 	private long people_vaccinated;
@@ -19,7 +29,9 @@ public class Country {
 		
 	}
 	public Country(String name,long people_vaccinated, long total_population) {
-		
+		this.name = name;
+		this.people_vaccinated = people_vaccinated;
+		this.total_population = total_population;
 	}
 	
 	public String getName() {

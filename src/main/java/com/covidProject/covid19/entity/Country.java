@@ -57,6 +57,7 @@ public class Country {
 	public void setTotal_population(long total_population) {
 		this.total_population = total_population;
 	}
-
+	
+	
 	
 }

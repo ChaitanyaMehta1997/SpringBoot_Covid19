@@ -7,7 +7,7 @@ import com.covidProject.covid19.Repositories.CountryRepository;
 import com.covidProject.covid19.entity.Country;
 
 
-@Component
+//@Component
 public class bootStrapTest implements CommandLineRunner {
 	
 	

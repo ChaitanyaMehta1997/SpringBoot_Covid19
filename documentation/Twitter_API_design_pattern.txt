@@ -1,0 +1,28 @@
+
+
+Should follow SOLID design principles 
+
+	      
+	      ConfigInterface
+	       -setMetaData(url,authToken,query,positionList)
+	      
+	      Class TwitterConfig extends ConfigInterface
+	      
+	      Class TwitterCRUD
+
+
+
+
+
+DOUBTS
+
+Q. how to classify a tweet as 1) requirement or 2) availability.
+
+
+Q. how to put into states
+
+to get oxygen+available = curl "https://api.twitter.com/2/tweets/search/recent?query=oxygen%20has%20available" -H "Authorization: Bearer AAAAAAAAAAAAAAAAAAAAAEn3OQEAAAAAwMLhmi2ijDlyDQl1CcYoKdhN%2FsA%3D4weGjuPvo4YO4sKJFrML6nI6RSZle3ZuN2UeO85wP2kLrcUN86"
+
+
+
+then pass it through states and cities map to localize

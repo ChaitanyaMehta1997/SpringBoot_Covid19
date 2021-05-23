@@ -1,0 +1,35 @@
+Covid 19 
+
+
+
+Problems:
+
+1) Reliable dataSource -> List of cities and towns in India -- Britannica Online Encyclopedia 
+
+
+Entity
+
+	1) COUNTRY
+	
+		- Model for countries
+		- (id(varchar UUID) ,name(String) , no of people vaccinated(bigint), total population(bigint)) 
+		- 
+		- Annotate as a JPA(persistence) entity
+
+		
+   2) State
+        - (id(varchar UUID), name(String)
+Repositories
+
+	1)  Country repository
+		- extends CrudRepo from springFramework
+	
+BootStrap and Tests
+	1) First create database and tables
+
+	
+	
+React JS
+	awesome tutorial : https://www.youtube.com/watch?v=5RA5NpxbioI
+	
+	1)

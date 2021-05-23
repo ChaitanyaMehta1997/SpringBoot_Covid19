@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class TwitterController {
 	
 	
-	protected String twitter_token = "Bearer AAAAAAAAAAAAAAAAAAAAAEn3OQEAAAAAwMLhmi2ijDlyDQl1CcYoKdhN%2FsA%3D4weGjuPvo4YO4sKJFrML6nI6RSZle3ZuN2UeO85wP2kLrcUN86";
+	protected String twitter_token = "YOUR_TOKEN";
 	public void build_request() {
 
 		try {

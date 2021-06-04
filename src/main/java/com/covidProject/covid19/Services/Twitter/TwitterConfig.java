@@ -1,4 +1,4 @@
-package com.covidProject.covid19.integration;
+package com.covidProject.covid19.Services.Twitter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

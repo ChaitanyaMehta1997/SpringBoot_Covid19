@@ -1,5 +1,4 @@
 package com.covidProject.covid19.entity;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -10,28 +9,28 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-public class CovidCountry {
+public class CovidCity {
 	/*
-	 * MongoDb class for covid country
+	 * MongoDb class for covid information
 	 */
 	
 	
 	@Id private String id;
-	private String name;
-	private List<CovidState> states;
-
 	
-	public CovidCountry() {
+	private String name;
+	private List<String> information;
+	
+	public CovidCity() {
 			
 	}
 	
-	public CovidCountry(String name,List<CovidState> states) {
+	public CovidCity(String name,List<String> information) {
 		this.name = name;
-		this.states = states;
+		this.information = information;
 	}
 
-	public CovidCountry(String string) {
-		// TODO Auto-generated constructor stub
+	public CovidCity(String name) {
+		this.name = name;
 	}
 
 	public String getId() {
@@ -50,14 +49,13 @@ public class CovidCountry {
 		this.name = name;
 	}
 
-	public List<CovidState> getStates() {
-		return states;
+	public List<String> getInformation() {
+		return information;
 	}
 
-	public void setStates(List<CovidState> states) {
-		this.states = states;
+	public void setInformation(List<String> information) {
+		this.information = information;
 	}
-
 
 
 }

@@ -10,28 +10,25 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
-public class CovidCountry {
+public class CovidState {
 	/*
 	 * MongoDb class for covid country
 	 */
 	
 	
 	@Id private String id;
+	
 	private String name;
-	private List<CovidState> states;
+	private List<String> city;
 
 	
-	public CovidCountry() {
+	public CovidState() {
 			
 	}
 	
-	public CovidCountry(String name,List<CovidState> states) {
+	public CovidState(String name, List<String> city) {
 		this.name = name;
-		this.states = states;
-	}
-
-	public CovidCountry(String string) {
-		// TODO Auto-generated constructor stub
+		this.city = city;
 	}
 
 	public String getId() {
@@ -50,13 +47,14 @@ public class CovidCountry {
 		this.name = name;
 	}
 
-	public List<CovidState> getStates() {
-		return states;
+	public List<String> getCity() {
+		return city;
 	}
 
-	public void setStates(List<CovidState> states) {
-		this.states = states;
+	public void setCity(List<String> city) {
+		this.city = city;
 	}
+
 
 
 

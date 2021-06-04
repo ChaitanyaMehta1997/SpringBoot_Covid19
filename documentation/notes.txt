@@ -4,30 +4,51 @@ Covid 19
 
 Problems:
 
-1) Reliable dataSource -> List of cities and towns in India -- Britannica Online Encyclopedia 
+1) Reliable dataSource -> List of cities and towns in India -- Britannica Online Encyclopedia, Kaggle
 
 
-Entity
 
+---------Entity (The database model)-----------------------------------------------------------------------------------------------       
 	1) COUNTRY
-	
 		- Model for countries
 		- (id(varchar UUID) ,name(String) , no of people vaccinated(bigint), total population(bigint)) 
-		- 
 		- Annotate as a JPA(persistence) entity
-
-		
    2) State
         - (id(varchar UUID), name(String)
+        
+   + JOIN TABLES for country,states and cities.
+   
+ ------------The switch to mongoDB:-----------------------------------------------------------------------------------------
+	1) To model states, cities and country we  would need around 7 tables. 
+	2) With mongoDb we can so this all in a single document and thus reduce the number of queries.
+		2a) if we go for embedded schema, there is a 16mb memory limit 
+	3) MongoDB schema: 
+
+				possible schema three ->
+
+									Country 
+										{
+										  name: ___
+										  State: {Name (unique),city:[id1,id2,....] }		
+										 }
+
+									City 
+										{
+											name:___
+											Covid_info : [text1,text2,text3]
+										}
+									
+---------------------------------------------------------------------------------------------------------------------------------
 Repositories
 
-	1)  Country repository
+	1)  Country repository (deprecated)
 		- extends CrudRepo from springFramework
 	
 BootStrap and Tests
 	1) First create database and tables
 
-	
+
+
 	
 React JS
 	awesome tutorial : https://www.youtube.com/watch?v=5RA5NpxbioI

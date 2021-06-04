@@ -25,7 +25,7 @@ import com.covidProject.covid19.entity.CovidState;
 @Component
 public class TwitterService {
 
-	protected String twitter_token = "Bearer AAAAAAAAAAAAAAAAAAAAAEn3OQEAAAAAwMLhmi2ijDlyDQl1CcYoKdhN%2FsA%3D4weGjuPvo4YO4sKJFrML6nI6RSZle3ZuN2UeO85wP2kLrcUN86";
+	protected String twitter_token = "YOUR_TOKEN";
 	private final CovidCityRepository covidCityRepository; 
 	private final CovidStateRepository covidStateRepository;
 	private final CovidCountryRepository covidCountryRepository;

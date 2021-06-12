@@ -3,6 +3,7 @@ package com.covidProject.covid19.controller;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 
@@ -11,7 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.covidProject.covid19.entity.CovidCountry;
 import com.covidProject.covid19.entity.State;
+import com.covidProject.covid19.Repositories.CovidStateRepository;
 import com.covidProject.covid19.Repositories.StateRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -36,6 +40,14 @@ public class StateController  {
 		
 		return (List<State>) this.stateRepository.findAll();
 		*/
+	@Autowired
+	private final CovidStateRepository covidStateRepository;
+	
+	public StateController(CovidStateRepository covidStateRepository) {
+		this.covidStateRepository = covidStateRepository;
+	}
+	
+
 	}
 
 

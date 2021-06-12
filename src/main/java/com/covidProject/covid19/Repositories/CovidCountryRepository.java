@@ -11,7 +11,8 @@ import com.covidProject.covid19.entity.CovidCountry;
 @Repository
 public interface CovidCountryRepository extends MongoRepository<CovidCountry,String> {
 	
-	   List<CovidCountry> findByName(final String name);
+	   @Query(value = "{'name' : ?0}", fields="{'states' : 1, _id:0}")
+	   List<CovidCountry> findAllStates(final String name);
 	   
 	   @Query(value="{}", fields="{'name' : 1, _id:0}")
 	   List<CovidCountry> findAllNames();

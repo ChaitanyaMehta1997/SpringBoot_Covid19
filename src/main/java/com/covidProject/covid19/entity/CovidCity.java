@@ -18,17 +18,17 @@ public class CovidCity {
 	@Id private String id;
 	
 	private String name;
-	private List<String> information;
+	private Information information;
 	
 	public CovidCity() {
 			
 	}
 	
-	public CovidCity(String name,List<String> information) {
+	public CovidCity(String name,Information information) {
 		this.name = name;
 		this.information = information;
 	}
-
+ 
 	public CovidCity(String name) {
 		this.name = name;
 	}
@@ -49,11 +49,11 @@ public class CovidCity {
 		this.name = name;
 	}
 
-	public List<String> getInformation() {
+	public Information getInformation() {
 		return information;
 	}
 
-	public void setInformation(List<String> information) {
+	public void setInformation(Information information) {
 		this.information = information;
 	}
 

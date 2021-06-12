@@ -1,8 +1,9 @@
 package com.covidProject.covid19.Repositories;
 
-import com.covidProject.covid19.entity.Information;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface InfoRepository extends CrudRepository<Information,Integer> {
+import com.covidProject.covid19.entity.CovidState;
 
+public interface InfoRepository extends MongoRepository<CovidState,String>  {
+	
 }

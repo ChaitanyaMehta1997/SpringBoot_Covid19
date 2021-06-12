@@ -1,14 +1,17 @@
 import axios from 'axios';
+import {HOST_URL} from '../Constants'
 
-
-const country_vacc_url = 'http://localhost:8080/api/covid';
 
 class CountryService{
-
+	
+	
 	getCountryData(){
-		
+		const country_vacc_url = HOST_URL + '/country';
 		return axios.get(country_vacc_url);
 	}
+
+	
+	
 
 }
 

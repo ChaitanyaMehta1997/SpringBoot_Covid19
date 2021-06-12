@@ -1,5 +1,6 @@
 package com.covidProject.covid19.entity;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -10,60 +11,58 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Information {
+	/*
+	 * MongoDb class for covid country
+	 */
 	
 	
-	@Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "id", columnDefinition = "VARCHAR(255)")
-    private UUID id;
+	@Id private String id;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "state_info",
-    joinColumns = @JoinColumn(name = "state_id"),
-    inverseJoinColumns = @JoinColumn(name = "info_id"))
-    Set<State> linkedStateInfo = new HashSet<State>();
-	
-	
-	@Column(nullable = false)
-	private long twitter_id;
-	private String info;
-	private long total_population;
+	private String twitterID;
+	private String type;
+	private String Info;
 	
 	public Information() {
-		
-		
+			
 	}
-	public Information(long twitter_id,String info) {
-		this.twitter_id = twitter_id;
-		this.info = info;
+	
+	public Information(String twitterID, String type,String Info) {
+		this.twitterID = twitterID;
+		this.type = type;
+		this.Info = Info;
 	}
-	public Set<State> getLinkedStateInfo() {
-		return linkedStateInfo;
+
+	public String getId() {
+		return id;
 	}
-	public void setLinkedStateInfo(Set<State> linkedStateInfo) {
-		this.linkedStateInfo = linkedStateInfo;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public long getTwitter_id() {
-		return twitter_id;
+
+	public String getTwitterID() {
+		return twitterID;
 	}
-	public void setTwitter_id(long twitter_id) {
-		this.twitter_id = twitter_id;
+
+	public void setTwitterID(String twitterID) {
+		this.twitterID = twitterID;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getInfo() {
-		return info;
+		return Info;
 	}
+
 	public void setInfo(String info) {
-		this.info = info;
+		Info = info;
 	}
-	public long getTotal_population() {
-		return total_population;
-	}
-	public void setTotal_population(long total_population) {
-		this.total_population = total_population;
-	}
-	
-	
-	
-	
+
+
 }

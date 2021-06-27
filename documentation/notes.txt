@@ -7,17 +7,6 @@ Problems:
 1) Reliable dataSource -> List of cities and towns in India -- Britannica Online Encyclopedia, Kaggle
 
 
-
----------Entity (The database model)-----------------------------------------------------------------------------------------------       
-	1) COUNTRY
-		- Model for countries
-		- (id(varchar UUID) ,name(String) , no of people vaccinated(bigint), total population(bigint)) 
-		- Annotate as a JPA(persistence) entity
-   2) State
-        - (id(varchar UUID), name(String)
-        
-   + JOIN TABLES for country,states and cities.
-   
  ------------The switch to mongoDB:-----------------------------------------------------------------------------------------
 	1) To model states, cities and country we  would need around 7 tables. 
 	2) With mongoDb we can so this all in a single document and thus reduce the number of queries.
@@ -35,9 +24,11 @@ Problems:
 									City 
 										{
 											name:___
+											country: ___
+											State : _____
 											Covid_info : [text1,text2,text3]
 										}
-									
+	4) Mistakes made : Write down queries for the workflow before designing your NoSQL database.
 ---------------------------------------------------------------------------------------------------------------------------------
 Repositories
 
@@ -47,7 +38,12 @@ Repositories
 BootStrap and Tests
 	1) First create database and tables
 
+-------------------
+Optimizations:
 
+For iterating through the twitter data, we need to constantly compare and update our database.
+Hence, to reduce the calls to our database, we use hashmap to store CityName: CovidCity. So we can directly update.
+-------------------
 
 	
 React JS

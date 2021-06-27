@@ -39,9 +39,7 @@ class CountryComponent extends React.Component{
 		return(
 			
 			<div>
-
 				<h1 className = "text-center">Country List</h1>
-				
 				<Link to = {this.state.data.map(data=>data.name)+"/states"}>
 					<button class="button" name="countryName" onClick={this.handleClick} value ={this.state.data.map(data=>data.name)}>{this.state.data.map(data=>data.name)}</button>					
 				</Link> 

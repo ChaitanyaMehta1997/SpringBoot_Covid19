@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import {Link} from "react-router-dom";
 
 import StateService from '../services/StateService';
 import '../State.css';
@@ -18,7 +19,7 @@ class StateComponent extends React.Component{
 	}
 	
 	componentDidMount(){
-		console.log(this.props.match.params.name)
+		this.state.countryName  = this.props.match.params.name;
 		StateService.getStates(this.props.match.params.name).then((response) => {
 			this.setState({states: response.data})
 		
@@ -36,16 +37,14 @@ class StateComponent extends React.Component{
 		
 		let table = []
 		const numberOfStates = this.state.states.length;
-		let children = []
+		console.log("c name"+this.props.match.params.name);
 		for(let i = 0; i < numberOfStates;i++){
 			let children = []
 			children.push(<td>{`${this.state.states[i]}`}</td>)
-			children.push(<td><button type="button" class="btn btn-primary" ><i class="far fa-eye"></i>select</button></td>)
-			
+			children.push(<Link to =  {"/"+this.state.countryName+"/states/"+this.state.states[i]}><td><button type="button" class="btn btn-primary" ><i class="far fa-eye"></i>select</button></td></Link>)
+		
 			table.push(<tr>{children}</tr>)
 		}
-
-
 		return table
 	  }
 	
@@ -53,9 +52,9 @@ class StateComponent extends React.Component{
 		
 		return(
 			
-			<div class="table-responsive">
+			<div className="table-responsive">
 				<h1 className = "text-center">States in {this.props.match.params.name}</h1>
-				<table class = "stateTable">
+				<table className = "stateTable">
 					<tbody>
         				{this.createStateTable()}
 					</tbody>

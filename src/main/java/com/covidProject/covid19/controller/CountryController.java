@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.covidProject.covid19.Repositories.CovidCountryRepository;
+import com.covidProject.covid19.entity.Country;
+import com.covidProject.covid19.entity.CovidCity;
 import com.covidProject.covid19.entity.CovidCountry;
 import com.covidProject.covid19.entity.CovidState;
+import com.covidProject.covid19.entity.CovidSubCity;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
@@ -61,20 +64,17 @@ public class CountryController  {
 	public List<String> getStateInfo(@PathVariable String CountryName) {
 		
 		List<CovidCountry> Country =  this.covidCountryRepository.findAllStates(CountryName);
-		
+		System.out.print("Called");
 		//TODO: check if you will need the ID's in the future
 		List<String> idStates = new ArrayList<>();
-		
 		List<CovidState> allStates = Country.get(0).getStates();
-
-
 		for(CovidState state:allStates){
 			
 			idStates.add(state.getName());
 		}
-
-	
 		return idStates;
 	}
+	
+	
 	
 }

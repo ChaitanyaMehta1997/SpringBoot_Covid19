@@ -10,13 +10,16 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class TwitterConfig {
 
-	protected String twitter_token = "YOUR_TOKEN";
+	protected String twitter_token = "AAAAAAAAAAAAAAAAAAAAAEn3OQEAAAAAgF4zpwmSEnqwA9qFmtc1DK4PBOs%3DVi5RF7NhZIUedG2fEe6AGBo0sMPJiZkqe6rY0hOXkGkENkRLsz";
 	protected String url = "https://api.twitter.com/2/tweets/search/recent";
 	protected List<String> parameters = new ArrayList<String>();
 	protected Map<String, String> header_params = new HashMap<String, String>();
 	protected HttpHeaders Httpheaders;
 	protected UriComponentsBuilder builder;
 	
+	public TwitterConfig() {
+		
+	}
 	public TwitterConfig(Map<String, String> header_map,List<String> parameters, String url) {
 			this.header_params = header_map;
 			this.url = url;
@@ -53,5 +56,8 @@ public class TwitterConfig {
 		} 
 		this.builder.queryParam("query", str_parameters);
 	}
-
+	
+	public void setParam(String param_name,String param_value) {
+		this.builder.queryParam("next_token", param_value);
+	}
 }

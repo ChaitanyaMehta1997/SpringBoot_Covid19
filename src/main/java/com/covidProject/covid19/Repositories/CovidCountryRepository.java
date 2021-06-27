@@ -6,7 +6,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.covidProject.covid19.entity.CovidCity;
 import com.covidProject.covid19.entity.CovidCountry;
+import com.covidProject.covid19.entity.CovidSubCity;
 
 @Repository
 public interface CovidCountryRepository extends MongoRepository<CovidCountry,String> {
@@ -20,5 +22,7 @@ public interface CovidCountryRepository extends MongoRepository<CovidCountry,Str
 	  //@Query("{'CovidInformation.information': ?0}")
 	  //List<CovidCountry> findByInformation(final String information);
 	  
+	  @Query(value = "{ 'states' : {$elemMatch:{'name' : ?1}}}",fields="{'city' : 1}")
+	  List<CovidCountry> findAllCity(String Countryname, String name);
 }
 	

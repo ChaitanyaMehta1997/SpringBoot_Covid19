@@ -18,17 +18,29 @@ public class CovidCity {
 	@Id private String id;
 	
 	private String name;
-	private Information information;
+	private List<Information> information;
+	
+	//TODO :  add these fields
+	private String State;
+	private String Country;
 	
 	public CovidCity() {
 			
 	}
 	
-	public CovidCity(String name,Information information) {
+	public CovidCity(String name,List<Information> information,String State,String Country) {
 		this.name = name;
+		this.State = State;
+		this.Country = Country;
 		this.information = information;
 	}
- 
+	
+	public CovidCity(String name,String State,String Country) {
+		this.name = name;
+		this.State = State;
+		this.Country = Country;
+	}
+	
 	public CovidCity(String name) {
 		this.name = name;
 	}
@@ -49,12 +61,28 @@ public class CovidCity {
 		this.name = name;
 	}
 
-	public Information getInformation() {
+	public List<Information> getInformation() {
 		return information;
 	}
 
-	public void setInformation(Information information) {
+	public void setInformation(List<Information> information) {
 		this.information = information;
+	}
+
+	public String getState() {
+		return State;
+	}
+
+	public void setState(String state) {
+		State = state;
+	}
+
+	public String getCountry() {
+		return Country;
+	}
+
+	public void setCountry(String country) {
+		Country = country;
 	}
 
 

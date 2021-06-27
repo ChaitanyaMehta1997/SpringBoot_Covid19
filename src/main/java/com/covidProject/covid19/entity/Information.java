@@ -17,7 +17,6 @@ public class Information {
 	
 	
 	@Id private String id;
-	
 	private String twitterID;
 	private String type;
 	private String Info;

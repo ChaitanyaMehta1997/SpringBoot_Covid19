@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -21,11 +22,13 @@ import com.covidProject.covid19.Repositories.CovidStateRepository;
 import com.covidProject.covid19.entity.CovidCity;
 import com.covidProject.covid19.entity.CovidCountry;
 import com.covidProject.covid19.entity.CovidState;
+import com.covidProject.covid19.entity.CovidSubCity;
+import com.covidProject.covid19.entity.Information;
 
 @Component
-public class TwitterService {
+public class TwitterService{
 
-	protected String twitter_token = "YOUR_TOKEN";
+	protected String twitter_token = "Bearer AAAAAAAAAAAAAAAAAAAAAEn3OQEAAAAAgF4zpwmSEnqwA9qFmtc1DK4PBOs%3DVi5RF7NhZIUedG2fEe6AGBo0sMPJiZkqe6rY0hOXkGkENkRLsz";
 	private final CovidCityRepository covidCityRepository; 
 	private final CovidStateRepository covidStateRepository;
 	private final CovidCountryRepository covidCountryRepository;
@@ -36,13 +39,50 @@ public class TwitterService {
 		this.covidCityRepository = null;
 		this.covidCountryRepository = null;
 	}
-	public TwitterService(CovidCityRepository covidCityRepository,CovidStateRepository covidStateRepository,CovidCountryRepository covidCountryRepository ) {
+	public TwitterService(CovidCityRepository covidCityRepository,CovidStateRepository covidStateRepository,CovidCountryRepository covidCountryRepository) {
 		this.covidCityRepository = covidCityRepository;
 		this.covidStateRepository = covidStateRepository;
 		this.covidCountryRepository = covidCountryRepository;
 	}
 	
-	public String build_request() {
+	public void process_request_data(List<String> req_data) {
+		
+		List<CovidCity> all_cities = covidCityRepository.findAll();
+		HashMap<String,CovidCity> cityMap = new HashMap<>();
+		
+		for(CovidCity city:all_cities) {
+			cityMap.put(city.getName().strip().toLowerCase(), city); 
+		} 
+
+		String Type = "oyxgen"; // This should be constant
+		for(int i = 0;i < req_data.size();i++) {
+			String[] current_info = req_data.get(i).split("\\s+");
+			CovidCity city = this.checkValidity(current_info, cityMap);
+			if(city != null){
+				System.out.println("inserted");
+				String tweetID = "0";
+				Information infoObj = new Information(tweetID,Type,req_data.get(i));
+				List<Information> infoList = city.getInformation();
+				if(infoList == null) {
+					infoList = new ArrayList<>();
+				}
+				infoList.add(infoObj);
+				city.setInformation(infoList);
+				this.covidCityRepository.save(city);
+			}
+		}
+		
+	}
+	
+	public CovidCity checkValidity(String [] text_arr,HashMap<String,CovidCity> cityMap) {
+		for(int j = 0;j<text_arr.length;j++) {
+			if (cityMap.containsKey(text_arr[j].toLowerCase())){
+				return cityMap.get(text_arr[j]);
+			}
+	    }
+		return null;
+	}
+	public String build_request(String paginationToken) {
 
 		try {
 
@@ -56,11 +96,14 @@ public class TwitterService {
 
 			TwitterConfig configObj = new TwitterConfig(header_map, params, url);
 			HttpEntity<?> entity = new HttpEntity<>(configObj.Httpheaders);
-
+			if(paginationToken != null) {
+				configObj.setParam("new_token", paginationToken);
+			}
+			
 			HttpEntity<String> response = restTemplate.exchange(configObj.builder.build().encode().toUri(),
 					HttpMethod.GET, entity, String.class);
 
-			System.out.println(response.getBody());
+			System.out.println(response.getBody().getClass().getName());
 			return response.getBody();
 		}
 
@@ -79,7 +122,6 @@ public class TwitterService {
 		String splitBy = ",";
 		String path = ".\\src\\main\\java\\com\\covidProject\\covid19\\Datasets\\Indian Cities Database.csv";
 		HashMap<String, List<String>> state_city = new HashMap<>();
-		
 		
 		try {
 			// parsing a CSV file into BufferedReader class constructor
@@ -116,14 +158,17 @@ public class TwitterService {
 				String state = entry.getKey();
 				List<String> cities = entry.getValue();
 
-				List<String> city_list = new ArrayList<>();
+				List<CovidSubCity> city_list = new ArrayList<>();
 
 				//Cities are created before states.
 				for (String city : cities) {
-					CovidCity covidCity = new CovidCity(city);
+					CovidCity covidCity = new CovidCity(city,state,countryDoc.getName());
 					this.covidCityRepository.save(covidCity);
-					city_list.add(covidCity.getId());
+					CovidSubCity subCity = new CovidSubCity(city,covidCity.getId());
+					city_list.add(subCity);
 				}
+				
+				
 				
 				//create state
 				CovidState covidState = new CovidState(state,city_list);

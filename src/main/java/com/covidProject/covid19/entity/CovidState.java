@@ -12,23 +12,27 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class CovidState {
 	/*
-	 * MongoDb class for covid country
+	 * MongoDb class for covid state
+	 *             {
+	 *             	   name:
+	 *                 city : [{name:___ , id:___ }]          
+	 *             }
 	 */
 	
 	
 	@Id private String id;
 	
 	private String name;
-	private List<String> city;
+	private List<CovidSubCity> city;
 
 	
 	public CovidState() {
 			
 	}
 	
-	public CovidState(String name, List<String> city) {
+	public CovidState(String name, List<CovidSubCity> city_list) {
 		this.name = name;
-		this.city = city;
+		this.city = city_list;
 	}
 
 	public String getId() {
@@ -47,11 +51,11 @@ public class CovidState {
 		this.name = name;
 	}
 
-	public List<String> getCity() {
+	public List<CovidSubCity> getCity() {
 		return city;
 	}
 
-	public void setCity(List<String> city) {
+	public void setCity(List<CovidSubCity> city) {
 		this.city = city;
 	}
 

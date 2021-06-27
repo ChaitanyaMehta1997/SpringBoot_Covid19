@@ -10,7 +10,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public class TwitterConfig {
 
-	protected String twitter_token = "AAAAAAAAAAAAAAAAAAAAAEn3OQEAAAAAgF4zpwmSEnqwA9qFmtc1DK4PBOs%3DVi5RF7NhZIUedG2fEe6AGBo0sMPJiZkqe6rY0hOXkGkENkRLsz";
+	protected String twitter_token = "YOUR_TOKEN";
 	protected String url = "https://api.twitter.com/2/tweets/search/recent";
 	protected List<String> parameters = new ArrayList<String>();
 	protected Map<String, String> header_params = new HashMap<String, String>();
